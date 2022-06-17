@@ -1,7 +1,14 @@
 import React from "react"
+import Routes from './routes'
+import { GlobalStyle } from "./styles"
 
 function App(){
-    return <h1>Fuerza Test</h1>
+    return (
+        <>
+            <Routes/>
+            <GlobalStyle/>
+        </>
+    )
 }
 
 export default App
