@@ -19,8 +19,9 @@ export default function NoteCardComponent(props: NoteCardData) {
   };
   return (
     <NoteCard theme={props.index % 2 == 0 ? theme1 : theme2}>
-      <div></div>
-      <span>{props.label}</span>
+      <div>
+        <span>{props.label}</span>
+      </div>
     </NoteCard>
   );
 }

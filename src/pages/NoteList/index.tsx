@@ -3,6 +3,8 @@ import Default from '../../components/Default';
 import Empty from '../../components/Empty';
 
 import NoteList from '../../components/NoteList';
+import ButtonComponent from '../../components/Button';
+import Navigation from '../../components/Navigation';
 import { Entry } from '../../interfaces/entry.interface';
 
 export default function NoteListPage() {
@@ -11,7 +13,7 @@ export default function NoteListPage() {
   useEffect(() => {
     setNotes([
       {
-        title: 'string',
+        title: 'The h1, h2, h3, h4, h5, and h6 elements ',
         content: 'string',
       },
       {
@@ -39,9 +41,15 @@ export default function NoteListPage() {
 
   return (
     <Default
+      button={false}
       child={
         notes.length > 0 ? (
-          <NoteList list={notes} />
+          <>
+            <Navigation title="aa" route='#' button={(
+              <ButtonComponent plain click={()=>{}} label="Add note" />
+            )} />
+            <NoteList list={notes} />
+          </>
         ) : (
           <Empty
             message="No notes available"

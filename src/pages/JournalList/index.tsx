@@ -3,6 +3,7 @@ import Default from '../../components/Default';
 import Empty from '../../components/Empty';
 
 import JournalList from '../../components/JournalList';
+import ButtonComponent from '../../components/Button';
 import { Journal } from '../../interfaces/journal.interface';
 
 export default function JournalListPage() {
@@ -46,47 +47,16 @@ export default function JournalListPage() {
         type: 'private',
         entryIds: null,
       },
-      {
-        id: '1',
-        title: 'HTML',
-        type: 'private',
-        entryIds: null,
-      },
-      {
-        id: '2',
-        title: 'Javascript',
-        type: 'private',
-        entryIds: null,
-      },
-      {
-        id: '3',
-        title: 'HTML',
-        type: 'private',
-        entryIds: null,
-      },
-      {
-        id: '4',
-        title: 'Javascript',
-        type: 'private',
-        entryIds: null,
-      },
-      {
-        id: '5',
-        title: 'HTML',
-        type: 'private',
-        entryIds: null,
-      },
-      {
-        id: '6',
-        title: 'Javascript',
-        type: 'private',
-        entryIds: null,
-      },
     ]);
   }, []);
 
   return (
     <Default
+      button={
+        journals.length > 0 ? (
+          <ButtonComponent plain click={() => {}} label="Add Journal" />
+        ) : null
+      }
       child={
         journals.length > 0 ? (
           <JournalList list={journals} />

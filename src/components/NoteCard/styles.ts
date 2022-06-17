@@ -5,10 +5,9 @@ export const NoteCard = styled.div`
     background: #FAF2EC;
     box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
-    padding: 20px;
-    box-sizing: border-box;
     width: 100%;
     height: 400px;
+    box-sizing: border-box;
 
     @media ${device.mobileM} {
         max-width: 170px;
@@ -18,6 +17,19 @@ export const NoteCard = styled.div`
     @media ${device.laptop} { 
         max-width: 220px;
         height: 250px;
+    }
+
+    div{
+        background: #FAF2EC;
+        box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        margin-left: 4px;
+        margin-top: -4px;
+        padding: 15px;
+        overflow: hidden;
     }
 
     span{
