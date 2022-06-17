@@ -1,0 +1,31 @@
+import styled from 'styled-components'
+import { device } from '../../styles'
+
+export const NoteCard = styled.div`
+    background: #FAF2EC;
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 400px;
+
+    @media ${device.mobileM} {
+        max-width: 170px;
+        height: 200px;
+    }
+
+    @media ${device.laptop} { 
+        max-width: 220px;
+        height: 250px;
+    }
+
+    span{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #333438;
+    }
+`
