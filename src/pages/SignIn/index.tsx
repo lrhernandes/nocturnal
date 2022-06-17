@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import ButtonComponent from '../../components/Button';
-import InputText from '../../components/InputText';
+import InputTextComponent from '../../components/InputText';
 import Logo from '../../components/Logo';
 
 import { User } from '../../interfaces/user.interface';
@@ -13,12 +13,12 @@ import {
   LinkComponent,
   Title,
   RowBetween,
-  Centered,
+  RowCentered,
   AuthForm,
   RowEnd,
 } from '../../styles';
 
-export default function SignIn() {
+export default function SignInPage() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState<User>();
@@ -58,12 +58,12 @@ export default function SignIn() {
               <LinkComponent weight={600}>Sign up</LinkComponent>
             </Link>
           </RowBetween>
-          <InputText
+          <InputTextComponent
             state={user?.username}
             inputChange={changeUsername}
             label="You username"
           />
-          <InputText
+          <InputTextComponent
             state={user?.password}
             inputChange={changePassword}
             label="You password"
@@ -78,9 +78,9 @@ export default function SignIn() {
             </Link>
           </RowEnd>
         </AuthForm>
-        <Centered>
-        <ButtonComponent click={handleLogin} label="Log In" />
-        </Centered>
+        <RowCentered>
+          <ButtonComponent click={handleLogin} label="Log In" />
+        </RowCentered>
       </ColumnCentered>
     </Container>
   );

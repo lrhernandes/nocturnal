@@ -4,21 +4,24 @@ import owl from './assets/owl.svg'
 const size = {
     mobileS: '320px',
     mobileM: '375px',
-    mobileL: '425px',
-    tablet: '768px',
+    mobileL: '485px',
+    tabletS: '650px',
+    tabletM: '867px',
     laptop: '1024px',
     laptopL: '1440px',
-    desktop: '2560px'
+    desktop: '1926px',
+    desktopL: '2560px'
 }
 export const device = {
     mobileS: `(min-width: ${size.mobileS})`,
     mobileM: `(min-width: ${size.mobileM})`,
     mobileL: `(min-width: ${size.mobileL})`,
-    tablet: `(min-width: ${size.tablet})`,
+    tabletS: `(min-width: ${size.tabletS})`,
+    tabletM: `(min-width: ${size.tabletM})`,
     laptop: `(min-width: ${size.laptop})`,
     laptopL: `(min-width: ${size.laptopL})`,
     desktop: `(min-width: ${size.desktop})`,
-    desktopL: `(min-width: ${size.desktop})`
+    desktopL: `(min-width: ${size.desktopL})`
 };
 
 
@@ -47,12 +50,23 @@ export const ColumnCentered = styled.div`
     width: 100%;
 `
 
-export const Centered = styled.div`
+export const RowCentered = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
+`
+
+export const Centered = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    gap: 20px;
+    height: 100%;
 `
 
 export const RowBetween = styled.div`

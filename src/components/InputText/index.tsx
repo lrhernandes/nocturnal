@@ -7,7 +7,7 @@ interface InputData {
   inputChange: Function;
 }
 
-export default function InputText(props: InputData) {
+export default function InputTextComponent(props: InputData) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.inputChange(e.target.value);

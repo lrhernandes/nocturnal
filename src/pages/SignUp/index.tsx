@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import ButtonComponent from '../../components/Button';
-import InputText from '../../components/InputText';
+import InputTextComponent from '../../components/InputText';
 import Logo from '../../components/Logo';
 
 import { User } from '../../interfaces/user.interface';
@@ -13,11 +13,11 @@ import {
   LinkComponent,
   Title,
   RowBetween,
-  Centered,
+  RowCentered,
   AuthForm,
 } from '../../styles';
 
-export default function SignIn() {
+export default function SignUpPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User>();
 
@@ -61,25 +61,25 @@ export default function SignIn() {
               </LinkComponent>
             </Link>
           </RowBetween>
-          <InputText
+          <InputTextComponent
             state={user?.username}
             inputChange={changeUsername}
             label="Define a username"
           />
-          <InputText
+          <InputTextComponent
             state={user?.password}
             inputChange={changePassword}
             label="Set your password"
           />
-          <InputText
+          <InputTextComponent
             state={user?.email}
             inputChange={changeEmail}
             label="Email (optional)"
           />
         </AuthForm>
-        <Centered>
+        <RowCentered>
           <ButtonComponent click={handleRegister} label="Create account" />
-        </Centered>
+        </RowCentered>
       </ColumnCentered>
     </Container>
   );
