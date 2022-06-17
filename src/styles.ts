@@ -67,7 +67,6 @@ export const Centered = styled.div`
     flex: 1;
     gap: 20px;
     height: 100%;
-    border: 2px solid red;
 `
 
 export const RowBetween = styled.div`

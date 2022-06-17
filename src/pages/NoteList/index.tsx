@@ -6,8 +6,10 @@ import NoteList from '../../components/NoteList';
 import ButtonComponent from '../../components/Button';
 import Navigation from '../../components/Navigation';
 import { Entry } from '../../interfaces/entry.interface';
+import { useNavigate } from 'react-router-dom';
 
 export default function NoteListPage() {
+  const navigate = useNavigate()
   const [notes, setNotes] = useState<Entry[]>([]);
 
   useEffect(() => {
@@ -45,8 +47,8 @@ export default function NoteListPage() {
       child={
         notes.length > 0 ? (
           <>
-            <Navigation title="aa" route='#' button={(
-              <ButtonComponent plain click={()=>{}} label="Add note" />
+            <Navigation title="aa" button={(
+              <ButtonComponent plain click={()=>{navigate(`add-note`)}} label="Add note" />
             )} />
             <NoteList list={notes} />
           </>

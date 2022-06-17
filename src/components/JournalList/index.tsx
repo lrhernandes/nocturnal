@@ -1,9 +1,8 @@
 import * as React from 'react';
-import JournalCard from '../JournalCard';
-
 import { JournalList } from './styles';
 
 import { Journal } from '../../interfaces/journal.interface';
+import JournalCardComponent from '../JournalCard';
 
 interface JournalListData {
   list: Array<Journal>;
@@ -13,9 +12,9 @@ export default function JournalListComponent(props: JournalListData) {
   return (
     <JournalList>
       {props.list.map((journal: Journal, index: number) => (
-        <JournalCard
+        <JournalCardComponent
           label={journal.title}
-          route="#"
+          id={journal.id}
           index={index}
           key={journal.id}
         />

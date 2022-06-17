@@ -1,28 +1,26 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Navigation } from './styles';
 import chevron from '../../assets/chevron.svg';
-import { Link } from 'react-router-dom';
 import { RowBetween } from '../../styles';
 
 interface NavigationData {
   title: string;
-  route: string;
   button?: React.ReactNode;
 }
 
 export default function NavigationComponent(props: NavigationData) {
+  const navigate = useNavigate()
   return (
     <Navigation>
       <RowBetween>
-        <Link
-          to={{
-            pathname: props.route,
-          }}
+        <a
+          onClick={() => navigate(-1)}
         >
           <img src={chevron} alt="Voltar" />
           {props.title}
-        </Link>
+        </a>
         {props.button ? props?.button : null}
       </RowBetween>
     </Navigation>

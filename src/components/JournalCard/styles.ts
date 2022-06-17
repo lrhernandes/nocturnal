@@ -17,6 +17,7 @@ export const JournalCard = styled.div<Props>`
     align-items: center;
     width: 100%;
     height: 400px;
+    cursor: pointer;
 
     @media ${device.mobileM} {
         max-width: 170px;

@@ -15,7 +15,7 @@ export default function NoteListComponent(props: NoteListData) {
       {props.list.map((note: Entry, index: number) => (
         <NoteCard
           label={note.title}
-          route="#"
+          id={note.id}
           index={index}
           key={note.id}
         />

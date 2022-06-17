@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { NoteCard } from './styles';
 
 interface NoteCardData {
   label: string;
-  route: string;
+  id?: string;
   index: number;
 }
 

@@ -15,6 +15,7 @@ export const Navigation = styled.div`
         justify-content: flex-start;
         color: #000000;
         text-decoration: none;
+        cursor: pointer;
 
         img{
             margin-right: 20px;

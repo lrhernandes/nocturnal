@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Default from '../../components/Default';
 import Empty from '../../components/Empty';
 
-import JournalList from '../../components/JournalList';
+import JournalListComponent from '../../components/JournalList';
 import ButtonComponent from '../../components/Button';
 import { Journal } from '../../interfaces/journal.interface';
+import { useNavigate } from 'react-router-dom';
 
 export default function JournalListPage() {
+  const navigate = useNavigate();
   const [journals, setJournals] = useState<Journal[]>([]);
 
   useEffect(() => {
@@ -54,12 +56,12 @@ export default function JournalListPage() {
     <Default
       button={
         journals.length > 0 ? (
-          <ButtonComponent plain click={() => {}} label="Add Journal" />
+          <ButtonComponent plain click={() => {navigate("/journal/new")}} label="Add Journal" />
         ) : null
       }
       child={
         journals.length > 0 ? (
-          <JournalList list={journals} />
+          <JournalListComponent list={journals} />
         ) : (
           <Empty
             message="No journals available"

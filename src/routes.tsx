@@ -15,8 +15,8 @@ export default function AppRoutes() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/journal/new" element={<JournalRegister />} />
-        <Route path="/notes" element={<NoteList />} />
-        <Route path="/notes/new" element={<NoteRegister />} />
+        <Route path="/journal/:id" element={<NoteList />} />
+        <Route path="/journal/:id/add-note" element={<NoteRegister />} />
         <Route path="/" element={<JournalList />} />
       </Routes>
     </BrowserRouter>
