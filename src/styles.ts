@@ -115,6 +115,16 @@ export const AuthForm = styled.div`
     }
 `
 
+export const ErrorMessage = styled.div`
+    color: tomato;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0px;
+    position: absolute;
+    padding: 0px;
+    margin-top: -18px;
+`
+
 export const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Montserrat', sans-serif;

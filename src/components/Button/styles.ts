@@ -7,8 +7,11 @@ export interface Props {
         background: string,
         color: string,
         border: string,
-        padding: string
-    }
+        padding: string,
+        content: string,
+        margin: string
+    },
+    loading: Boolean
 }
 
 
@@ -24,14 +27,19 @@ export const Button = styled.button<Props>`
     outline: none;
     border: ${(props : Props) => props.theme.border};
     padding: ${(props : Props) => props.theme.padding};
-    cursor: pointer;
-
+    cursor: ${(props : Props) => props.loading ? 'not-allowed' : 'pointer'};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
     &::before{
-        content: 'aa';
+        content: ${(props : Props) => props.theme.content};
         background-image: url(${plus}) ;
         background-repeat: no-repeat;
         color: transparent;
-        margin-right: 5px;
+        margin-right: ${(props : Props) => props.theme.margin};
         background-position: center;
     }
 

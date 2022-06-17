@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../../components/Default';
-import Empty from '../../components/Empty';
 
 import NoteList from '../../components/NoteList';
 import ButtonComponent from '../../components/Button';
 import Navigation from '../../components/Navigation';
 import { Entry } from '../../interfaces/entry.interface';
 import { useNavigate } from 'react-router-dom';
+import EmptyComponent from '../../components/Empty';
 
 export default function NoteListPage() {
   const navigate = useNavigate()
@@ -53,7 +53,7 @@ export default function NoteListPage() {
             <NoteList list={notes} />
           </>
         ) : (
-          <Empty
+          <EmptyComponent
             message="No notes available"
             link="Create a note"
             route="/note/new"

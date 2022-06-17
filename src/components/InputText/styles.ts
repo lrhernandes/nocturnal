@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 export interface Props {
-    inputValue: string
+    inputValue: string,
+    error?: string
 }
 
 
-const Input = styled.input`
+const Input = styled.input<Props>`
     background: #FFFFFF;
-    border: 1px solid rgba(157, 164, 166, 0.07);
     border-radius: 4px;
     outline: 0;
     position: relative;    
@@ -21,6 +21,9 @@ const Input = styled.input`
     height: 40px;
     box-sizing: border-box;
     padding-top: 8px;
+    border: ${(p: Props) => p.error ? '1px solid tomato' : '1px solid rgba(157, 164, 166, 0.07)'};
+
+    
 `;
 
 const InputLabel = styled.label<Props>`
@@ -46,6 +49,7 @@ const InputWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 10px 0px;
+    max-width: 500px;
 
     &:focus-within ${InputLabel} {
         transform: translate(0, 5px);

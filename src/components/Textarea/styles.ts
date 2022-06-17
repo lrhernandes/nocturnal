@@ -47,6 +47,7 @@ export const TextareaWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 10px 0px;
+    max-width: 500px;
 
     &:focus-within ${TextareaLabel} {
         transform: translate(0, 5px);

@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import api from '../../services/api'
 
-import ButtonComponent from '../../components/Button';
-import InputTextComponent from '../../components/InputText';
-import Logo from '../../components/Logo';
-
-import { User } from '../../interfaces/user.interface';
-
+// styled components
 import {
   Container,
   ColumnCentered,
@@ -18,19 +14,28 @@ import {
   RowEnd,
 } from '../../styles';
 
+// components
+import ButtonComponent from '../../components/Button';
+import InputTextComponent from '../../components/InputText';
+import LogoComponent from '../../components/Logo';
+
+// interfaces
+import { User } from '../../interfaces/user.interface';
+interface TokenData {
+  token: string;
+}
+
 export default function SignInPage() {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState<User>();
-
-  useEffect(() => {
-    setUser({
-      username: '',
-      email: '',
-      password: '',
-      journalIds: [],
-    });
-  }, []);
+  const [user, setUser] = useState<User>({
+    username: '',
+    email: '',
+    password: '',
+    journalIds: [],
+  });
+  const [loading, setLoading] = useState<Boolean>(false);
+  const [usernameErrorMessage, setUsernameErroMessage] = useState<string>();
+  const [passwordErrorMessage, setPasswordErroMessage] = useState<string>();
 
   const changeUsername = (value: string) => {
     setUser({ ...user, username: value });
@@ -39,14 +44,38 @@ export default function SignInPage() {
     setUser({ ...user, password: value });
   };
 
-  function handleLogin() {
-    navigate('/');
+  function validateEmpty(data: string) {
+    if (data != '' && data != undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  async function handleLogin() {
+    if (
+      validateEmpty(user.username) &&
+      validateEmpty(user.password) &&
+      !loading
+    ) {
+      try {
+        setLoading(true);
+        const response: TokenData = await api.post('/auth/login', user);
+        localStorage.setItem('token', response.token);
+        navigate('/');
+      } catch (err) {
+        setUsernameErroMessage('Invalid username')
+        setPasswordErroMessage('Invalid password')
+      } finally {
+        setLoading(false);
+      }
+    }
   }
 
   return (
     <Container>
       <ColumnCentered>
-        <Logo></Logo>
+        <LogoComponent size=""></LogoComponent>
         <AuthForm>
           <RowBetween>
             <Title>Sign in</Title>
@@ -62,11 +91,13 @@ export default function SignInPage() {
             state={user?.username}
             inputChange={changeUsername}
             label="You username"
+            error={usernameErrorMessage}
           />
           <InputTextComponent
             state={user?.password}
             inputChange={changePassword}
             label="You password"
+            error={passwordErrorMessage}
           />
           <RowEnd>
             <Link
@@ -79,7 +110,11 @@ export default function SignInPage() {
           </RowEnd>
         </AuthForm>
         <RowCentered>
-          <ButtonComponent click={handleLogin} label="Log In" />
+          <ButtonComponent
+            loading={loading}
+            click={handleLogin}
+            label="Log In"
+          />
         </RowCentered>
       </ColumnCentered>
     </Container>

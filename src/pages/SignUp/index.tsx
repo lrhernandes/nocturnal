@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 
-import ButtonComponent from '../../components/Button';
-import InputTextComponent from '../../components/InputText';
-import Logo from '../../components/Logo';
-
-import { User } from '../../interfaces/user.interface';
-
+// styled components
 import {
   Container,
   ColumnCentered,
@@ -16,19 +12,28 @@ import {
   RowCentered,
   AuthForm,
 } from '../../styles';
+import LogoComponent from '../../components/Logo';
+
+// components
+import ButtonComponent from '../../components/Button';
+import InputTextComponent from '../../components/InputText';
+
+// interfaces
+import { User } from '../../interfaces/user.interface';
+interface TokenData {
+  token: string;
+}
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User>();
-
-  useEffect(() => {
-    setUser({
-      username: '',
-      email: '',
-      password: '',
-      journalIds: [],
-    });
-  }, []);
+  const [loading, setLoading] = useState<Boolean>(false);
+  const [emailError, setEmailError] = useState<string>()
+  const [user, setUser] = useState<User>({
+    username: '',
+    email: '',
+    password: '',
+    journalIds: [],
+  });
 
   const changeUsername = (value: string) => {
     setUser({ ...user, username: value });
@@ -40,14 +45,54 @@ export default function SignUpPage() {
     setUser({ ...user, email: value });
   };
 
-  function handleRegister() {
-    navigate('/');
+  function validateEmpty(data: string) {
+    if (data != '' && data != undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function validateEmail(email: string, setError: Function) {
+    const test = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (test.test(email)) {
+      setError(undefined)
+      return true;
+    } else {
+      setError('Invalid email')
+      return false;
+    }
+  }
+
+  async function handleRegister() {
+    var validEmail = true;
+    if (user.email) {
+      validEmail = validateEmail(user.email, setEmailError);
+    }
+
+    if (
+      validateEmpty(user.username) &&
+      validateEmpty(user.password) &&
+      validEmail &&
+      !loading
+    ) {
+      try {
+        setLoading(true);
+        const response: TokenData = await api.post('/auth/signup', user);
+        localStorage.setItem('token', response.token);
+        navigate('/')
+      } catch (err) {
+        alert(err)
+      } finally {
+        setLoading(false);
+      }
+    }
   }
 
   return (
     <Container>
       <ColumnCentered>
-        <Logo></Logo>
+        <LogoComponent size=""></LogoComponent>
         <AuthForm>
           <RowBetween>
             <Title>Sign up</Title>
@@ -75,10 +120,15 @@ export default function SignUpPage() {
             state={user?.email}
             inputChange={changeEmail}
             label="Email (optional)"
+            error={emailError}
           />
         </AuthForm>
         <RowCentered>
-          <ButtonComponent click={handleRegister} label="Create account" />
+          <ButtonComponent
+            loading={loading}
+            click={handleRegister}
+            label="Create account"
+          />
         </RowCentered>
       </ColumnCentered>
     </Container>

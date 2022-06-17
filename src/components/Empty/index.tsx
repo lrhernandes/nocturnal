@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import empty from '../../assets/empty.svg';
 import { RowCentered, LinkComponent } from '../../styles';
-import { EmptyComponent } from './styles';
+import { Empty } from './styles';
 
 interface EmptyData{
   message: string,
@@ -11,9 +11,9 @@ interface EmptyData{
   route: string
 }
 
-export default function Empty(props: EmptyData) {
+export default function EmptyComponent(props: EmptyData) {
   return (
-    <EmptyComponent>
+    <Empty>
       <h6>{props.message}</h6>
       <img src={empty} alt="Sem dados disponíveis" />
       <RowCentered>
@@ -25,6 +25,6 @@ export default function Empty(props: EmptyData) {
           <LinkComponent>{props.link}</LinkComponent>
         </Link>
       </RowCentered>
-    </EmptyComponent>
+    </Empty>
   );
 }

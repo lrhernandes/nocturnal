@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Default from '../../components/Default';
-import Empty from '../../components/Empty';
 
 import JournalListComponent from '../../components/JournalList';
 import ButtonComponent from '../../components/Button';
 import { Journal } from '../../interfaces/journal.interface';
 import { useNavigate } from 'react-router-dom';
+import EmptyComponent from '../../components/Empty';
 
 export default function JournalListPage() {
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export default function JournalListPage() {
         journals.length > 0 ? (
           <JournalListComponent list={journals} />
         ) : (
-          <Empty
+          <EmptyComponent
             message="No journals available"
             link="Create a journal"
             route="/journal/new"
