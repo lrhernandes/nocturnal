@@ -79,7 +79,7 @@ export default function SignIn() {
           </RowEnd>
         </AuthForm>
         <Centered>
-          <ButtonComponent click={handleLogin} label="Log In" />
+        <ButtonComponent click={handleLogin} label="Log In" />
         </Centered>
       </ColumnCentered>
     </Container>

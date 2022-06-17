@@ -1,20 +1,20 @@
 import * as React from 'react';
 
 import Logo from '../Logo';
+import Button from '../Button';
 
-import { Container } from '../../styles';
-import { DefaultComponent } from './styles';
-import Empty from '../Empty';
+import { Container, RowBetween } from '../../styles';
+import { Default } from './styles';
+// import Empty from '../Empty';
 
-interface DefaultData {
-  child: React.ReactNode;
-}
-
-export default function Default(props: DefaultData) {
+export default function DefaultComponent(props: DefaultData) {
   return (
     <Container>
-      <DefaultComponent>
-        <Logo></Logo>
+      <Default>
+        <RowBetween>
+            <Logo size='45vw'></Logo>
+            <Button plain click={()=>{}} label="Add Journal" />
+        </RowBetween>
         <main>
           {props?.child}
           {/* <Empty
@@ -23,7 +23,7 @@ export default function Default(props: DefaultData) {
             route="/note/register"
           /> */}
         </main>
-      </DefaultComponent>
+      </Default>
     </Container>
   );
 }

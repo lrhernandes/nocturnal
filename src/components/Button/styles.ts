@@ -1,17 +1,27 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
-    background-color: #834825;
+export interface Props {
+    theme: {
+        background: string,
+        color: string,
+        border: string,
+        padding: string
+    }
+}
+
+
+export const Button = styled.button<Props>`
+    background-color: ${(props : Props) => props.theme.background};
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 17px;
-    color: #FFFFFF;
+    color: ${(props : Props) => props.theme.color};
     border-radius: 40px;
     outline: none;
-    border: 0px;
-    padding: 13px 60px;
+    border: ${(props : Props) => props.theme.border};
+    padding: ${(props : Props) => props.theme.padding};
     cursor: pointer;
 
     &:hover {
@@ -19,3 +29,4 @@ export const Button = styled.button`
         opacity: 0.8;
     }
 `
+

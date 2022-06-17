@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DefaultComponent = styled.div`
+export const Default = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
