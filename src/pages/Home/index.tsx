@@ -1,9 +1,14 @@
 import * as React from 'react';
+import Default from '../../components/Default';
+
+
 
 export default function Home () {
   return (
-    <div>
-      home
-    </div>
+    <Default child={
+      (
+        <div></div>
+      )
+    } />
   );
 }

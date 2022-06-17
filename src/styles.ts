@@ -17,6 +17,7 @@ export const Container = styled.div`
     min-height: 100vh;
     height: 100%;
     display: flex;
+    box-sizing: border-box;
 `
 
 export const ColumnCentered = styled.div`
