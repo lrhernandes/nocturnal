@@ -29,7 +29,7 @@ interface ResponseData {
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>();
   const [usernameError, setUsernameError] = useState<string>();
   const [user, setUser] = useState<User>({
@@ -39,6 +39,8 @@ export default function SignUpPage() {
     journalIds: [],
   });
 
+  // set specific user prop while it changes on the input
+  // receive the input value as param
   const changeUsername = (value: string) => {
     setUser({ ...user, username: value });
   };
@@ -49,6 +51,8 @@ export default function SignUpPage() {
     setUser({ ...user, email: value });
   };
 
+  // validate required inputs
+  // receive the input value as param
   function validateEmpty(data: string) {
     if (data != '' && data != undefined) {
       return true;
@@ -57,6 +61,8 @@ export default function SignUpPage() {
     }
   }
 
+  // validate email format
+  // receive the email input and the email error setter as params
   function validateEmail(email: string, setError: Function) {
     const test = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (test.test(email)) {
@@ -68,12 +74,16 @@ export default function SignUpPage() {
     }
   }
 
+  // consume user register route for user registration
+  // use user data
   async function handleRegister() {
+    // email validation if the field is not empty
     var validEmail = true;
     if (user.email) {
       validEmail = validateEmail(user.email, setEmailError);
     }
 
+    // validates required fields
     if (
       validateEmpty(user.username) &&
       validateEmpty(user.password) &&

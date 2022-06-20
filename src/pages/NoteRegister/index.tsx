@@ -32,11 +32,13 @@ export default function NoteRegisterPage() {
   const [journalError, setJournalError] = useState<string>('Opps, something went wrong');
   const [titleError, setTitleError] = useState<string>('');
   const [contentError, setContentError] = useState<string>('');
-  const [loading, setLoading] = useState<Boolean>(false);
-  const [journalLoading, setJournalLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [journalLoading, setJournalLoading] = useState<boolean>(true);
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // consume journal list route for journal title list
+  // use journal id to find journal title
   useEffect(() => {
     async function fetchJournals() {
       try {
@@ -58,6 +60,8 @@ export default function NoteRegisterPage() {
     fetchJournals();
   }, []);
 
+  // validate required inputs
+  // receive the input value and the error setter as params
   function validateEmpty(data: string, errorSetter: Function) {
     if (data != '' && data != undefined) {
       errorSetter(null);
@@ -67,6 +71,9 @@ export default function NoteRegisterPage() {
       return false;
     }
   }
+
+  // set specific user prop while it changes on the input
+  // receive the input value as param
   const changeTitle = (value: string) => {
     setNote({ ...note, title: value });
   };
@@ -74,6 +81,8 @@ export default function NoteRegisterPage() {
     setNote({ ...note, content: value });
   };
 
+  // consume journal entry register route for entry registration
+  // use note data and journal id
   async function handleSave() {
     if (
       validateEmpty(note.title, setTitleError) &&

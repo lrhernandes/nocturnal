@@ -24,16 +24,18 @@ interface ResponseData {
 export default function NoteDescriptionPage() {
   const [note, setNote] = useState<Entry>();
   const [journalTitle, setJournalTitle] = useState<string>('');
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>();
   const { id, noteid } = useParams();
 
   useEffect(() => {
-    fetchNotes();
+    fetchEntries();
     fetchJournals();
   }, []);
 
-  async function fetchNotes() {
+  // consume journal entries list route for entries listing and find the current entry
+  // use journal id to find journal entries and the entry id to list its data
+  async function fetchEntries() {
     try {
       const response: ResponseData = await api.get(`/journals/entries/${id}`);
       if (response.entries) {
@@ -49,6 +51,9 @@ export default function NoteDescriptionPage() {
       setLoading(false);
     }
   }
+
+  // consume journal list route for journal title list
+  // use journal id to find journal title
   async function fetchJournals() {
     try {
       const userId = localStorage.getItem('userId');

@@ -13,7 +13,7 @@ interface ButtonData {
 }
 
 export default function ButtonComponent(props: ButtonData) {
-  const theme1 = {
+  const solid = {
     background: '#834825',
     color: 'white',
     border: '0px',
@@ -21,7 +21,7 @@ export default function ButtonComponent(props: ButtonData) {
     content: '',
     margin: '0px',
   };
-  const theme2 = {
+  const plain = {
     background: 'transparent',
     color: '#834825',
     border: '1px solid #834825',
@@ -33,7 +33,7 @@ export default function ButtonComponent(props: ButtonData) {
   return (
     <Button
       loading={props.loading}
-      theme={props.plain ? theme2 : theme1}
+      theme={props.plain ? plain : solid}
       onClick={props.click}
     >
       <ClipLoader

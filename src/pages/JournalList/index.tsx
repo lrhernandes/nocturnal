@@ -18,10 +18,12 @@ interface ResponseData {
 export default function JournalListPage() {
   const navigate = useNavigate();
   const [journals, setJournals] = useState<Journal[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
+  // consume journal list route for journals listing
+  // use the user id to find its journals
   useEffect(() => {
-    async function fetchData() {
+    async function fetchJournals() {
       const id = localStorage.getItem('userId');
       try {
         const response: ResponseData = await api.get(`/journals/${id}`);
@@ -32,7 +34,7 @@ export default function JournalListPage() {
         setLoading(false);
       }
     }
-    fetchData();
+    fetchJournals();
   }, []);
 
   return (
@@ -40,7 +42,6 @@ export default function JournalListPage() {
       button={
         journals.length > 0 ? (
           <ButtonComponent
-            loading={false}
             plain
             click={() => {
               navigate('/journal/new');

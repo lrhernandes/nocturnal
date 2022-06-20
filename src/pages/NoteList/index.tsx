@@ -16,47 +16,57 @@ import { Journal } from '../../interfaces/journal.interface';
 interface JournalListData {
   journals: Journal[];
 }
+interface JournalEntriesData {
+  entries: Entry[];
+}
 
 export default function NoteListPage() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState<Entry[]>([]);
   const [journalTitle, setJournalTitle] = useState<string>();
-  const [loading, setLoading] = useState<Boolean>(true);
-  const [navigationLoading, setNavigationLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [navigationLoading, setNavigationLoading] = useState<boolean>(true);
   const { id } = useParams();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await api.get(`/journals/entries/${id}`);
-        setNotes(response.entries);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    async function fetchJournals() {
-      try {
-        const userId = localStorage.getItem('userId');
-        const journalsList: JournalListData = await api.get(
-          `/journals/${userId}`
-        );
-        journalsList.journals.map((journal: Journal) => {
-          if (journal.id === id) {
-            setJournalTitle(journal.title);
-          }
-        });
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setNavigationLoading(false);
-      }
-    }
-
-    fetchData();
+    fetchEntries();
     fetchJournals();
   }, []);
+  
+  // consume journal entries list route for entries listing
+  // use journal id to find journal entries
+  async function fetchEntries() {
+    try {
+      const response: JournalEntriesData = await api.get(
+        `/journals/entries/${id}`
+      );
+      setNotes(response.entries);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // consume journal list route for journal title list
+  // use journal id to find journal title
+  async function fetchJournals() {
+    try {
+      const userId = localStorage.getItem('userId');
+      const journalsList: JournalListData = await api.get(
+        `/journals/${userId}`
+      );
+      journalsList.journals.map((journal: Journal) => {
+        if (journal.id === id) {
+          setJournalTitle(journal.title);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setNavigationLoading(false);
+    }
+  }
 
   return (
     <DefaultComponent
@@ -95,7 +105,6 @@ export default function NoteListPage() {
                 title={journalTitle}
                 button={
                   <ButtonComponent
-                    loading={false}
                     plain
                     click={() => {
                       navigate(`add-note`);

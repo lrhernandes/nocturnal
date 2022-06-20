@@ -35,10 +35,12 @@ export default function SignInPage() {
     password: '',
     journalIds: [],
   });
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [usernameErrorMessage, setUsernameErroMessage] = useState<string>();
   const [passwordErrorMessage, setPasswordErroMessage] = useState<string>();
 
+  // set specific user prop while it changes on the input
+  // receive the input value as param
   const changeUsername = (value: string) => {
     setUser({ ...user, username: value });
   };
@@ -46,6 +48,8 @@ export default function SignInPage() {
     setUser({ ...user, password: value });
   };
 
+  // validate required inputs
+  // receive the input value as param
   function validateEmpty(data: string) {
     if (data != '' && data != undefined) {
       return true;
@@ -54,7 +58,8 @@ export default function SignInPage() {
     }
   }
   
-
+  // consume login route for user authentication
+  // use user data
   async function handleLogin() {
     if (
       validateEmpty(user.username) &&
@@ -63,7 +68,6 @@ export default function SignInPage() {
     ) {
       try {
         setLoading(true);
-        console.log(user)
         const response: ResponseData = await api.post('/auth/login', user);
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.user.id);
@@ -110,7 +114,7 @@ export default function SignInPage() {
                 pathname: '#',
               }}
             >
-              <LinkComponent>Forgot Password</LinkComponent>
+              <LinkComponent weight={400}>Forgot Password</LinkComponent>
             </Link>
           </RowEnd>
         </AuthForm>

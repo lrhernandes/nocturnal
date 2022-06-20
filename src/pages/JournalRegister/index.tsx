@@ -16,15 +16,11 @@ import { Journal } from '../../interfaces/journal.interface';
 
 export default function JournalRegisterPage() {
   const navigate = useNavigate();
-
   const [journal, setJournal] = useState<Journal>();
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [journalError, setJournaleError] = useState<string | null>(null);
 
-  const changeTitle = (value: string) => {
-    setJournal({ ...journal, title: value });
-  };
-
+  // save initial values to journal object
   useEffect(() => {
     const id = localStorage.getItem('userId');
     setJournal({
@@ -35,6 +31,14 @@ export default function JournalRegisterPage() {
     });
   }, []);
 
+  // set specific user prop while it changes on the input
+  // receive the input value as param
+  const changeTitle = (value: string) => {
+    setJournal({ ...journal, title: value });
+  };
+
+  // validate email format
+  // receive the journal title input and the error setter as params
   function validateEmpty(data: string, errorSetter: Function) {
     if (data != '' && data != undefined) {
       errorSetter(null);
@@ -45,6 +49,8 @@ export default function JournalRegisterPage() {
     }
   }
 
+  // consume journal register route for journal registration
+  // use journal data and user id
   async function handleSave() {
     if (validateEmpty(journal?.title, setJournaleError)) {
       try {

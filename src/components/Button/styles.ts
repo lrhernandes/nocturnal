@@ -6,7 +6,7 @@ export interface Props {
         border: string,
         padding: string,
     },
-    loading: Boolean
+    loading: boolean
 }
 
 
