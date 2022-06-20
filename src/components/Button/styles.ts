@@ -1,15 +1,10 @@
 import styled from 'styled-components'
-
-import plus from '../../assets/plus.svg'
-
 export interface Props {
     theme: {
         background: string,
         color: string,
         border: string,
         padding: string,
-        content: string,
-        margin: string
     },
     loading: Boolean
 }
@@ -33,15 +28,6 @@ export const Button = styled.button<Props>`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    
-    &::before{
-        content: ${(props : Props) => props.theme.content};
-        background-image: url(${plus}) ;
-        background-repeat: no-repeat;
-        color: transparent;
-        margin-right: ${(props : Props) => props.theme.margin};
-        background-position: center;
-    }
 
     &:hover {
         transition: all 0.4s;

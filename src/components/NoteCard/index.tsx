@@ -10,6 +10,7 @@ interface NoteCardData {
 }
 
 export default function NoteCardComponent(props: NoteCardData) {
+  const navigate = useNavigate()
   const theme1 = {
     background: '#B8E5E3',
     color: 'black',
@@ -19,7 +20,7 @@ export default function NoteCardComponent(props: NoteCardData) {
     color: 'white',
   };
   return (
-    <NoteCard theme={props.index % 2 == 0 ? theme1 : theme2}>
+    <NoteCard theme={props.index % 2 == 0 ? theme1 : theme2} onClick={()=>{navigate(props.id)}}>
       <div>
         <span>{props.label}</span>
       </div>

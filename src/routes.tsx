@@ -7,6 +7,7 @@ import JournalList from './pages/JournalList/index';
 import JournalRegister from './pages/JournalRegister/index';
 import NoteList from './pages/NoteList/index';
 import NoteRegister from './pages/NoteRegister/index';
+import NoteDescription from './pages/NoteDescription/index';
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
         <Route path="/journal/new" element={<JournalRegister />} />
         <Route path="/journal/:id" element={<NoteList />} />
         <Route path="/journal/:id/add-note" element={<NoteRegister />} />
+        <Route path="/journal/:id/:noteid" element={<NoteDescription />} />
         <Route path="/" element={<JournalList />} />
       </Routes>
     </BrowserRouter>

@@ -34,7 +34,7 @@ export const Container = styled.div`
     background-image: url(${owl});
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 60vh;
+    background-size: cover;
     background-position: -30vw 50%;
     margin: 0px;
     padding: 20px;
@@ -107,11 +107,17 @@ export const Title = styled.h1`
 `
 
 export const AuthForm = styled.div`
-    margin-top: 10vh;
     margin-bottom: 11vh;
+    max-width: 500px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
 
     input{
         margin-bottom: 10px;
+    }
+    img{
+        margin-bottom: 10vh;
     }
 `
 
@@ -122,7 +128,7 @@ export const ErrorMessage = styled.div`
     margin: 0px;
     position: absolute;
     padding: 0px;
-    margin-top: -18px;
+    margin-top: -10px;
 `
 
 export const GlobalStyle = createGlobalStyle`

@@ -20,14 +20,18 @@ import InputTextComponent from '../../components/InputText';
 
 // interfaces
 import { User } from '../../interfaces/user.interface';
-interface TokenData {
+interface ResponseData {
   token: string;
+  user: {
+    id: string;
+  };
 }
 
 export default function SignUpPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<Boolean>(false);
-  const [emailError, setEmailError] = useState<string>()
+  const [emailError, setEmailError] = useState<string>();
+  const [usernameError, setUsernameError] = useState<string>();
   const [user, setUser] = useState<User>({
     username: '',
     email: '',
@@ -56,10 +60,10 @@ export default function SignUpPage() {
   function validateEmail(email: string, setError: Function) {
     const test = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (test.test(email)) {
-      setError(undefined)
+      setError(undefined);
       return true;
     } else {
-      setError('Invalid email')
+      setError('Invalid email');
       return false;
     }
   }
@@ -78,11 +82,14 @@ export default function SignUpPage() {
     ) {
       try {
         setLoading(true);
-        const response: TokenData = await api.post('/auth/signup', user);
-        localStorage.setItem('token', response.token);
-        navigate('/')
-      } catch (err) {
-        alert(err)
+        const response: ResponseData = await api.post('/auth/signup', user);
+        if (response) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.user.id);
+          navigate('/login');
+        }
+      } catch (error) {
+        setUsernameError(error.message);
       } finally {
         setLoading(false);
       }
@@ -92,8 +99,8 @@ export default function SignUpPage() {
   return (
     <Container>
       <ColumnCentered>
-        <LogoComponent size=""></LogoComponent>
         <AuthForm>
+          <LogoComponent size=""></LogoComponent>
           <RowBetween>
             <Title>Sign up</Title>
             <Link
@@ -110,6 +117,7 @@ export default function SignUpPage() {
             state={user?.username}
             inputChange={changeUsername}
             label="Define a username"
+            error={usernameError}
           />
           <InputTextComponent
             state={user?.password}

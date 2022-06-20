@@ -1,7 +1,11 @@
 import React from 'react';
+
+// styled components
 import { ErrorMessage } from '../../styles';
+import { InputContainer } from './styles';
 import { Input, InputWrapper, InputLabel } from './styles.ts';
 
+// interfaces
 interface InputData {
   state: string;
   label: string;
@@ -15,7 +19,7 @@ export default function InputTextComponent(props: InputData) {
   };
 
   return (
-    <>
+    <InputContainer>
       <InputWrapper>
         <Input
           error={props.error}
@@ -25,6 +29,6 @@ export default function InputTextComponent(props: InputData) {
         <InputLabel inputValue={props.state}>{props.label}</InputLabel>
       </InputWrapper>
       <ErrorMessage>{props.error}</ErrorMessage>
-    </>
+    </InputContainer>
   );
 }

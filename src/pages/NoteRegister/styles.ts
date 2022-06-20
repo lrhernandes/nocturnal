@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { InputWrapper } from '../../components/InputText/styles'
 
-export const NoteRegister = styled.form`
+export const NoteRegister = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

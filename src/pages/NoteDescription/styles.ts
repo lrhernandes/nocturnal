@@ -1,24 +1,13 @@
 import styled from 'styled-components'
-import { device } from '../../styles'
 
-export const NoteCard = styled.div`
+export const LargeNoteCard = styled.div`
     background: #FAF2EC;
     box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     width: 100%;
-    height: 400px;
-    cursor: pointer;
+    min-height: 400px;
     box-sizing: border-box;
-
-    @media ${device.mobileM} {
-        max-width: 170px;
-        height: 200px;
-    }
-
-    @media ${device.laptop} { 
-        max-width: 220px;
-        height: 250px;
-    }
+    margin-top: 40px;
 
     div{
         background: #FAF2EC;
@@ -26,19 +15,27 @@ export const NoteCard = styled.div`
         border-radius: 4px;
         box-sizing: border-box;
         width: 100%;
+        min-height: 400px;
         height: 100%;
         margin-left: 4px;
         margin-top: -4px;
         padding: 15px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     span{
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 24px;
         color: #333438;
+
+        strong{
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
     }
 `

@@ -1,13 +1,15 @@
 import * as React from 'react';
+import plus from '../../assets/plus.svg';
 
+// components
 import { Button } from './styles';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 interface ButtonData {
-  label: string,
-  click: Function,
-  plain?: Boolean,
-  loading? :Boolean
+  label: string;
+  click: Function;
+  plain?: Boolean;
+  loading?: Boolean;
 }
 
 export default function ButtonComponent(props: ButtonData) {
@@ -15,9 +17,9 @@ export default function ButtonComponent(props: ButtonData) {
     background: '#834825',
     color: 'white',
     border: '0px',
-    padding:'13px 60px',
+    padding: '13px 60px',
     content: '',
-    margin: '0px'
+    margin: '0px',
   };
   const theme2 = {
     background: 'transparent',
@@ -25,24 +27,28 @@ export default function ButtonComponent(props: ButtonData) {
     border: '1px solid #834825',
     padding: '13px 20px',
     content: 'aaa',
-    margin: '5px'
+    margin: '5px',
   };
 
-  const override =`
-    display: block;
-    margin: 0 auto;
-    height: 10px;
-    width: 10px;
-  `;
-
   return (
-    <Button loading={props.loading} theme={props.plain ? theme2 : theme1} onClick={props.click}>
+    <Button
+      loading={props.loading}
+      theme={props.plain ? theme2 : theme1}
+      onClick={props.click}
+    >
       <ClipLoader
         color={'#ffffff'}
-        css={override}
+        css={`
+          display: block;
+          margin: 0 auto;
+          height: 10px;
+          width: 10px;
+        `}
         loading={props.loading}
         size={150}
-      /> {props.label}
+      />
+      {props.plain ? <img src={plus} alt="Plus" /> : null}
+      {props.label}
     </Button>
   );
 }

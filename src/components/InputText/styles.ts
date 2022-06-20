@@ -5,8 +5,11 @@ export interface Props {
     error?: string
 }
 
+export const InputContainer = styled.div`
+    width: 100%;
+`;
 
-const Input = styled.input<Props>`
+export const Input = styled.input<Props>`
     background: #FFFFFF;
     border-radius: 4px;
     outline: 0;
@@ -21,12 +24,10 @@ const Input = styled.input<Props>`
     height: 40px;
     box-sizing: border-box;
     padding-top: 8px;
-    border: ${(p: Props) => p.error ? '1px solid tomato' : '1px solid rgba(157, 164, 166, 0.07)'};
-
-    
+    border: ${(p: Props) => p.error ? '1px solid tomato' : '1px solid rgba(157, 164, 166, 0.07)'};    
 `;
 
-const InputLabel = styled.label<Props>`
+export const InputLabel = styled.label<Props>`
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -44,7 +45,7 @@ const InputLabel = styled.label<Props>`
     /* font-size: ${(p: Props) => p.inputValue ? '9px' : '12px'}; */
 `;
 
-const InputWrapper = styled.div`
+export const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -60,7 +61,3 @@ const InputWrapper = styled.div`
         color: #736D6B;
     }
 `;
-
-
-
-export { Input, InputWrapper, InputLabel }

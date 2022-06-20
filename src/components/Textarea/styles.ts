@@ -1,12 +1,18 @@
 import styled from 'styled-components'
 
 export interface Props {
-    inputValue: string
+    inputValue: string,
+    error: string
 }
+
+export const TextareaContainer = styled.div`
+    width: 100%;
+`;
+
 
 export const Textarea = styled.textarea`
     background: #FFFFFF;
-    border: 1px solid rgba(157, 164, 166, 0.07);
+    border: ${(p: Props) => p.error ? '1px solid tomato' : '1px solid rgba(157, 164, 166, 0.07)'};    
     border-radius: 4px;
     outline: 0;
     position: relative;    

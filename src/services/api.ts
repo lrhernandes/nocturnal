@@ -20,7 +20,7 @@ http.interceptors.response.use(
     if (response) {
       if (response.status >= 400 && response.status < 500) {
         console.log(response.data?.data?.message, 'error');
-        return null;
+        throw new Error(response.data?.data?.message)
       }
     } else if (request) {
       console.log('Request failed. Please try again.', 'error');

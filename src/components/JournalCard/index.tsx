@@ -26,7 +26,7 @@ export default function JournalCardComponent(props: JournalCardData) {
   }
 
   return (
-    <JournalCard onClick={() => openJournal(props.id)} theme={props.index % 2 == 0 ? theme1 : theme2}>
+    <JournalCard onClick={() => openJournal(props.id)} theme={props.index % 2 === 0 ? theme1 : theme2}>
       <div></div>
       <span>{props.label}</span>
     </JournalCard>

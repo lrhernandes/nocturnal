@@ -21,9 +21,7 @@ import LogoComponent from '../../components/Logo';
 
 // interfaces
 import { User } from '../../interfaces/user.interface';
-interface TokenData {
-  token: string;
-}
+
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -51,6 +49,7 @@ export default function SignInPage() {
       return false;
     }
   }
+  
 
   async function handleLogin() {
     if (
@@ -60,8 +59,11 @@ export default function SignInPage() {
     ) {
       try {
         setLoading(true);
-        const response: TokenData = await api.post('/auth/login', user);
+        console.log(user)
+        const response: ResponseData = await api.post('/auth/login', user);
+        console.log(response)
         localStorage.setItem('token', response.token);
+        localStorage.setItem('userId', response.user.id);
         navigate('/');
       } catch (err) {
         setUsernameErroMessage('Invalid username')
@@ -75,8 +77,8 @@ export default function SignInPage() {
   return (
     <Container>
       <ColumnCentered>
-        <LogoComponent size=""></LogoComponent>
         <AuthForm>
+        <LogoComponent size=""></LogoComponent>
           <RowBetween>
             <Title>Sign in</Title>
             <Link
