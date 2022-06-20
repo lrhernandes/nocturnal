@@ -50,7 +50,9 @@ export default function JournalRegisterPage() {
     if (validateEmpty(journal?.title, setJournaleError)) {
       try {
         setLoading(true);
-        setJournal({ ...journal, userId: localStorage.getItem('userId')?.toString() })
+        const final = journal
+        final.userId = `${localStorage.getItem('userId')}`
+        setJournal(final)
         await api.post(`/journals/`, journal);
         navigate('/');
       } catch (error) {

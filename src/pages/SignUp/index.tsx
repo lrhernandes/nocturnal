@@ -32,6 +32,7 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>();
   const [usernameError, setUsernameError] = useState<string>();
+  const [passwordError, setPasswordError] = useState<string>();
   const [user, setUser] = useState<User>({
     username: '',
     email: '',
@@ -52,11 +53,13 @@ export default function SignUpPage() {
   };
 
   // validate required inputs
-  // receive the input value as param
-  function validateEmpty(data: string) {
+  // receive the input value and the error setter as params
+  function validateEmpty(data: string, errorSetter: Function) {
     if (data !== '' && data !== undefined) {
+      errorSetter(null);
       return true;
     } else {
+      errorSetter('Required field');
       return false;
     }
   }
@@ -85,8 +88,8 @@ export default function SignUpPage() {
 
     // validates required fields
     if (
-      validateEmpty(user.username) &&
-      validateEmpty(user.password || "") &&
+      validateEmpty(user.username, setUsernameError) &&
+      validateEmpty(user.password || "", setPasswordError) &&
       validEmail &&
       !loading
     ) {
@@ -137,6 +140,7 @@ export default function SignUpPage() {
             state={user?.password || ""}
             inputChange={changePassword}
             label="Set your password"
+            error={passwordError}
           />
           <InputTextComponent
             state={user?.email}

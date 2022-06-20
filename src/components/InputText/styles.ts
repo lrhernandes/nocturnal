@@ -7,9 +7,8 @@ export interface Props {
 
 export const InputContainer = styled.div`
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 export const Input = styled.input<Props>`

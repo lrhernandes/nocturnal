@@ -17,17 +17,8 @@ export type ProtectedRouteProps = {
   outlet: JSX.Element;
 };
 
-function fetchData() {
-    console.log('aaa');
-    if (localStorage.getItem('token')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
 const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-  isAuthenticated: fetchData(),
+  isAuthenticated: false,
   authenticationPath: '/login',
 };
 

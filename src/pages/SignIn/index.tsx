@@ -48,11 +48,13 @@ export default function SignInPage() {
   };
 
   // validate required inputs
-  // receive the input value as param
-  function validateEmpty(data: string) {
+  // receive the input value and the error setter as params
+  function validateEmpty(data: string, errorSetter: Function) {
     if (data !== '' && data !== undefined) {
+      errorSetter(null);
       return true;
     } else {
+      errorSetter('Required field');
       return false;
     }
   }
@@ -61,8 +63,8 @@ export default function SignInPage() {
   // use user data
   async function handleLogin() {
     if (
-      validateEmpty(user.username) &&
-      validateEmpty(user.password || '') &&
+      validateEmpty(user.username, setUsernameErroMessage) &&
+      validateEmpty(user.password || '', setPasswordErroMessage) &&
       !loading
     ) {
       try {

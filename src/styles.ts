@@ -106,6 +106,16 @@ export const Title = styled.h1`
     color: #834825;
 `
 
+export const ErrorMessage = styled.div`
+    color: tomato;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0px;
+    position: absolute;
+    padding: 0px;
+    margin-top: -10px;
+`
+
 export const AuthForm = styled.div`
     margin-bottom: 11vh;
     max-width: 500px;
@@ -119,17 +129,12 @@ export const AuthForm = styled.div`
     img{
         margin-bottom: 10vh;
     }
+    ${ErrorMessage}{
+        margin-top: -18px;
+    }
 `
 
-export const ErrorMessage = styled.div`
-    color: tomato;
-    font-size: 11px;
-    font-weight: 600;
-    margin: 0px;
-    position: absolute;
-    padding: 0px;
-    margin-top: -16px;
-`
+
 
 export const GlobalStyle = createGlobalStyle`
     body{
