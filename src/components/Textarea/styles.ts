@@ -7,6 +7,7 @@ export interface Props {
 
 export const TextareaContainer = styled.div`
     width: 100%;
+    max-width: 500px;
 `;
 
 

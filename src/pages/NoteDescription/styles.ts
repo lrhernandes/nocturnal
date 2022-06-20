@@ -8,6 +8,9 @@ export const LargeNoteCard = styled.div`
     min-height: 400px;
     box-sizing: border-box;
     margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
 
     div{
         background: #FAF2EC;
