@@ -16,6 +16,9 @@
     "redux": "^4.2.0",
     "styled-components": "^5.3.5"
   },
+  "engines" : { 
+    "node" : ">=16.13.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
