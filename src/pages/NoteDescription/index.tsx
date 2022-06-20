@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 // styled components
-import { RowCentered, Title } from '../../styles';
 import { LargeNoteCard } from './styles';
 
 // components
@@ -19,14 +17,16 @@ import { Journal } from '../../interfaces/journal.interface';
 interface JournalListData {
   journals: Journal[];
 }
+interface ResponseData {
+  entries: Entry[];
+}
 
 export default function NoteDescriptionPage() {
   const [note, setNote] = useState<Entry>();
-  const [journalTitle, setJournalTitle] = useState<string>();
+  const [journalTitle, setJournalTitle] = useState<string>('');
   const [loading, setLoading] = useState<Boolean>(true);
   const [error, setError] = useState<string>();
   const { id, noteid } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchNotes();
@@ -35,7 +35,7 @@ export default function NoteDescriptionPage() {
 
   async function fetchNotes() {
     try {
-      const response = await api.get(`/journals/entries/${id}`);
+      const response: ResponseData = await api.get(`/journals/entries/${id}`);
       if (response.entries) {
         response.entries.map((note) => {
           if (note.id === noteid) {
@@ -92,7 +92,9 @@ export default function NoteDescriptionPage() {
 
             <LargeNoteCard>
               <div>
-                <span><strong>{note?.title}</strong></span>
+                <span>
+                  <strong>{note?.title}</strong>
+                </span>
                 <span>{note?.content}</span>
               </div>
             </LargeNoteCard>

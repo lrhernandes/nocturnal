@@ -8,8 +8,8 @@ import ClipLoader from 'react-spinners/ClipLoader';
 interface ButtonData {
   label: string;
   click: Function;
-  plain?: Boolean;
-  loading?: Boolean;
+  plain?: boolean;
+  loading?: boolean;
 }
 
 export default function ButtonComponent(props: ButtonData) {

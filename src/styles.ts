@@ -128,7 +128,7 @@ export const ErrorMessage = styled.div`
     margin: 0px;
     position: absolute;
     padding: 0px;
-    margin-top: -10px;
+    margin-top: -16px;
 `
 
 export const GlobalStyle = createGlobalStyle`

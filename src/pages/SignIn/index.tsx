@@ -21,6 +21,10 @@ import LogoComponent from '../../components/Logo';
 
 // interfaces
 import { User } from '../../interfaces/user.interface';
+interface ResponseData{
+  user: User,
+  token: string
+}
 
 
 export default function SignInPage() {
@@ -61,10 +65,9 @@ export default function SignInPage() {
         setLoading(true);
         console.log(user)
         const response: ResponseData = await api.post('/auth/login', user);
-        console.log(response)
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.user.id);
-        navigate('/');
+        navigate('/', { replace: true });
       } catch (err) {
         setUsernameErroMessage('Invalid username')
         setPasswordErroMessage('Invalid password')
