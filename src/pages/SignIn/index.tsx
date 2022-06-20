@@ -68,11 +68,12 @@ export default function SignInPage() {
       try {
         setLoading(true);
         const response: ResponseData = await api.post('/auth/login', user);
-        localStorage.setItem('token', response.token);
+        
         if (response.user.id) {
+          localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.user.id);
+          navigate('/');
         }
-        navigate('/', { replace: true });
       } catch (err) {
         setUsernameErroMessage('Invalid username');
         setPasswordErroMessage('Invalid password');

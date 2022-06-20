@@ -13,14 +13,11 @@ export default function ProtectedRoute({
   outlet,
 }: ProtectedRouteProps) {
   // check if user token is stored to display referring route
-  React.useEffect(() => {
-    if (localStorage.getItem('token')) {
-      isAuthenticated = true;
-    } else {
-      isAuthenticated = false;
-    }
-    console.log(isAuthenticated);
-  }, []);
+  if (localStorage.getItem('token')) {
+    isAuthenticated = true;
+  } else {
+    isAuthenticated = false;
+  }
 
   if (isAuthenticated) {
     return outlet;

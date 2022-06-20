@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import SignIn from './pages/SignIn/index';
 import SignUp from './pages/SignUp/index';
@@ -17,8 +17,17 @@ export type ProtectedRouteProps = {
   outlet: JSX.Element;
 };
 
+function fetchData() {
+    console.log('aaa');
+    if (localStorage.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-  isAuthenticated: localStorage.getItem('token')? true : false,
+  isAuthenticated: fetchData(),
   authenticationPath: '/login',
 };
 
@@ -28,6 +37,15 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute
+              {...defaultProtectedRouteProps}
+              outlet={<JournalList />}
+            />
+          }
+        ></Route>
         <Route
           path="/"
           element={
