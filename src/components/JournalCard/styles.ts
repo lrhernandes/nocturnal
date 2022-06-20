@@ -20,6 +20,7 @@ export const JournalCard = styled.div<Props>`
     cursor: pointer;
 
     @media ${device.mobileS} {
+        max-width: 170px;
         height: 180px;
     }
 
