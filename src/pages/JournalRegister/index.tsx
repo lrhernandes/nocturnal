@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// @ts-ignore
 import api from '../../services/api.ts';
 
 // components
@@ -16,31 +17,25 @@ import { Journal } from '../../interfaces/journal.interface';
 
 export default function JournalRegisterPage() {
   const navigate = useNavigate();
-  const [journal, setJournal] = useState<Journal>();
+  const [journal, setJournal] = useState<Journal>({
+    title: '',
+    userId: '',
+    entryIds: [],
+    type: 'private',
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const [journalError, setJournaleError] = useState<string | null>(null);
-
-  // save initial values to journal object
-  useEffect(() => {
-    const id = localStorage.getItem('userId');
-    setJournal({
-      title: '',
-      userId: `${id}`,
-      entryIds: [],
-      type: 'private',
-    });
-  }, []);
 
   // set specific user prop while it changes on the input
   // receive the input value as param
   const changeTitle = (value: string) => {
-    setJournal({ ...journal, title: value });
+      setJournal({ ...journal, title: value });
   };
 
   // validate email format
   // receive the journal title input and the error setter as params
   function validateEmpty(data: string, errorSetter: Function) {
-    if (data != '' && data != undefined) {
+    if (data !== '' && data !== undefined) {
       errorSetter(null);
       return true;
     } else {
@@ -55,10 +50,15 @@ export default function JournalRegisterPage() {
     if (validateEmpty(journal?.title, setJournaleError)) {
       try {
         setLoading(true);
+        setJournal({ ...journal, userId: localStorage.getItem('userId')?.toString() })
         await api.post(`/journals/`, journal);
         navigate('/');
       } catch (error) {
-        setJournaleError(error.message);
+        if (error instanceof Error) {
+          setJournaleError(error.message);
+        }else{
+          setJournaleError('Unexpected error');
+        }
       } finally {
         setLoading(false);
       }

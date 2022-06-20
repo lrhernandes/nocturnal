@@ -18,7 +18,7 @@ export type ProtectedRouteProps = {
 };
 
 const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
-  isAuthenticated: () => localStorage.getItem('token')? true : false,
+  isAuthenticated: localStorage.getItem('token')? true : false,
   authenticationPath: '/login',
 };
 

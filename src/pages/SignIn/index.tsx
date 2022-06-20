@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../../services/api'
+import api from '../../services/api';
 
 // styled components
 import {
@@ -21,11 +21,10 @@ import LogoComponent from '../../components/Logo';
 
 // interfaces
 import { User } from '../../interfaces/user.interface';
-interface ResponseData{
-  user: User,
-  token: string
+interface ResponseData {
+  user: User;
+  token: string;
 }
-
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -51,30 +50,32 @@ export default function SignInPage() {
   // validate required inputs
   // receive the input value as param
   function validateEmpty(data: string) {
-    if (data != '' && data != undefined) {
+    if (data !== '' && data !== undefined) {
       return true;
     } else {
       return false;
     }
   }
-  
+
   // consume login route for user authentication
   // use user data
   async function handleLogin() {
     if (
       validateEmpty(user.username) &&
-      validateEmpty(user.password) &&
+      validateEmpty(user.password || '') &&
       !loading
     ) {
       try {
         setLoading(true);
         const response: ResponseData = await api.post('/auth/login', user);
         localStorage.setItem('token', response.token);
-        localStorage.setItem('userId', response.user.id);
+        if (response.user.id) {
+          localStorage.setItem('userId', response.user.id);
+        }
         navigate('/', { replace: true });
       } catch (err) {
-        setUsernameErroMessage('Invalid username')
-        setPasswordErroMessage('Invalid password')
+        setUsernameErroMessage('Invalid username');
+        setPasswordErroMessage('Invalid password');
       } finally {
         setLoading(false);
       }
@@ -85,7 +86,7 @@ export default function SignInPage() {
     <Container>
       <ColumnCentered>
         <AuthForm>
-        <LogoComponent size=""></LogoComponent>
+          <LogoComponent size=""></LogoComponent>
           <RowBetween>
             <Title>Sign in</Title>
             <Link
@@ -103,7 +104,7 @@ export default function SignInPage() {
             error={usernameErrorMessage}
           />
           <InputTextComponent
-            state={user?.password}
+            state={user?.password || ''}
             inputChange={changePassword}
             label="You password"
             error={passwordErrorMessage}

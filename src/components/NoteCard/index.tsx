@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { NoteCard } from './styles';
 
 interface NoteCardData {
-  label: string;
-  id?: string;
-  index: number;
+  label: string,
+  id?: string |undefined,
+  index: number,
 }
 
 export default function NoteCardComponent(props: NoteCardData) {
@@ -20,7 +20,7 @@ export default function NoteCardComponent(props: NoteCardData) {
     color: 'white',
   };
   return (
-    <NoteCard theme={props.index % 2 == 0 ? theme1 : theme2} onClick={()=>{navigate(props.id)}}>
+    <NoteCard theme={props.index % 2 == 0 ? theme1 : theme2} onClick={()=>{navigate(`${props.id}`)}}>
       <div>
         <span>{props.label}</span>
       </div>

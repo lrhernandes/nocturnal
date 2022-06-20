@@ -6,7 +6,7 @@ import chevron from '../../assets/chevron.svg';
 import { RowBetween } from '../../styles';
 
 interface NavigationData {
-  title: string;
+  title: string | undefined;
   button?: React.ReactNode;
 }
 

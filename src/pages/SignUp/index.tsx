@@ -54,7 +54,7 @@ export default function SignUpPage() {
   // validate required inputs
   // receive the input value as param
   function validateEmpty(data: string) {
-    if (data != '' && data != undefined) {
+    if (data !== '' && data !== undefined) {
       return true;
     } else {
       return false;
@@ -64,7 +64,7 @@ export default function SignUpPage() {
   // validate email format
   // receive the email input and the email error setter as params
   function validateEmail(email: string, setError: Function) {
-    const test = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const test = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (test.test(email)) {
       setError(undefined);
       return true;
@@ -86,7 +86,7 @@ export default function SignUpPage() {
     // validates required fields
     if (
       validateEmpty(user.username) &&
-      validateEmpty(user.password) &&
+      validateEmpty(user.password || "") &&
       validEmail &&
       !loading
     ) {
@@ -99,7 +99,11 @@ export default function SignUpPage() {
           navigate('/login');
         }
       } catch (error) {
-        setUsernameError(error.message);
+        if (error instanceof Error) {
+          setUsernameError(error.message);
+        } else {
+          setUsernameError('Unexpected error');
+        }
       } finally {
         setLoading(false);
       }
@@ -130,7 +134,7 @@ export default function SignUpPage() {
             error={usernameError}
           />
           <InputTextComponent
-            state={user?.password}
+            state={user?.password || ""}
             inputChange={changePassword}
             label="Set your password"
           />

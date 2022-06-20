@@ -21,7 +21,7 @@ export default function JournalCardComponent(props: JournalCardData) {
     color: 'white',
   };
 
-  function openJournal(id: string){
+  function openJournal(id: string | undefined){
     navigate(`/journal/${id}`)
   }
 

@@ -45,11 +45,11 @@ export const TextareaLabel = styled.label<Props>`
     margin-left: 10px;
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: ${(p: Props) => p.inputValue != '' ? 400 : 600};
-    line-height: ${(p: Props) => p.inputValue != '' ? '11px' : '15px'};
-    color: ${(p: Props) => p.inputValue != '' ? '#736D6B' : '#804627'};
-    transform: ${(p: Props) => p.inputValue != '' ? 'translate(0, 10px)' : 0};
-    font-size: ${(p: Props) => p.inputValue != '' ? '9px' : '12px'};
+    font-weight: ${(p: Props) => p.inputValue !== '' ? 400 : 600};
+    line-height: ${(p: Props) => p.inputValue !== '' ? '11px' : '15px'};
+    color: ${(p: Props) => p.inputValue !== '' ? '#736D6B' : '#804627'};
+    transform: ${(p: Props) => p.inputValue !== '' ? 'translate(0, 10px)' : 0};
+    font-size: ${(p: Props) => p.inputValue !== '' ? '9px' : '12px'};
 `;
 
 export const TextareaWrapper = styled.div`

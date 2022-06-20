@@ -15,7 +15,6 @@ export default function JournalRegisterComponent(props: JournalRegisterData) {
       {props.list.map((journal: Journal, index: number) => (
         <JournalCard
           label={journal.title}
-          route="#"
           index={index}
           key={journal.id}
         />

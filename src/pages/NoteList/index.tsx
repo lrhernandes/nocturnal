@@ -106,6 +106,7 @@ export default function NoteListPage() {
                 button={
                   <ButtonComponent
                     plain
+                    loading={false}
                     click={() => {
                       navigate(`add-note`);
                     }}

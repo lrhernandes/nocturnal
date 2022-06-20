@@ -46,7 +46,11 @@ export default function NoteDescriptionPage() {
         });
       }
     } catch (error) {
-      setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      }else{
+        setError('Unexpected error');
+      }
     } finally {
       setLoading(false);
     }
@@ -68,7 +72,11 @@ export default function NoteDescriptionPage() {
         });
       }
     } catch (error) {
-      setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Unexpected error');
+      }
     }
   }
 
@@ -93,7 +101,7 @@ export default function NoteDescriptionPage() {
           <EmptyComponent message={error} link="Back to start" route="/" />
         ) : (
           <>
-            <NavigationComponent title={journalTitle} route="#" />
+            <NavigationComponent title={journalTitle} />
 
             <LargeNoteCard>
               <div>

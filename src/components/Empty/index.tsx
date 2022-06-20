@@ -22,7 +22,7 @@ export default function EmptyComponent(props: EmptyData) {
             pathname: props.route,
           }}
         >
-          <LinkComponent>{props.link}</LinkComponent>
+          <LinkComponent weight={400}>{props.link}</LinkComponent>
         </Link>
       </RowCentered>
     </Empty>

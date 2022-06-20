@@ -7,9 +7,9 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 interface ButtonData {
   label: string;
-  click: Function;
+  click: React.MouseEventHandler;
   plain?: boolean;
-  loading?: boolean;
+  loading: boolean ;
 }
 
 export default function ButtonComponent(props: ButtonData) {

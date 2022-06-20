@@ -1,6 +1,7 @@
 import React from 'react';
 
 // styled components
+// @ts-ignore
 import { Textarea, TextareaWrapper, TextareaLabel, TextareaContainer } from './styles.ts'
 import { ErrorMessage } from '../../styles';
 

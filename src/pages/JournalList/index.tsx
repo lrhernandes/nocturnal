@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
+// @ts-ignore
+import api from '../../services/api.ts';
 
 // components
 import Default from '../../components/Default';
@@ -43,6 +44,7 @@ export default function JournalListPage() {
         journals.length > 0 ? (
           <ButtonComponent
             plain
+            loading={false}
             click={() => {
               navigate('/journal/new');
             }}

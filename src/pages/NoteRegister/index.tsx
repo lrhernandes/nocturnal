@@ -51,8 +51,12 @@ export default function NoteRegisterPage() {
             setJournalTitle(journal.title);
           }
         });
-      } catch (err) {
-        setJournalError(err.message);
+      } catch (error) {
+        if (error instanceof Error) {
+          setJournalError(error.message);
+        }else{
+          setJournalError('Unexpected error');
+        }
       } finally {
         setJournalLoading(false);
       }
@@ -63,7 +67,7 @@ export default function NoteRegisterPage() {
   // validate required inputs
   // receive the input value and the error setter as params
   function validateEmpty(data: string, errorSetter: Function) {
-    if (data != '' && data != undefined) {
+    if (data !== '' && data !== undefined) {
       errorSetter(null);
       return true;
     } else {
@@ -93,8 +97,13 @@ export default function NoteRegisterPage() {
         await api.post(`/journals/entry/${id}`, note);
         navigate(-1);
       } catch (error) {
-        setTitleError(error.message);
-        setContentError(error.message);
+        if (error instanceof Error) {
+          setTitleError(error.message);
+          setContentError(error.message);
+        }else{
+          setTitleError('Unexpected error');
+          setContentError('Unexpected error');
+        }
       } finally {
         setLoading(false);
       }
@@ -120,7 +129,7 @@ export default function NoteRegisterPage() {
           />
         ) : journalTitle ? (
           <>
-            <NavigationComponent title={journalTitle} route="#" />
+            <NavigationComponent title={journalTitle} />
             <NoteRegister>
               <InputTextComponent
                 state={note?.title}
