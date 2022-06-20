@@ -8,7 +8,7 @@ export const NoteList = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 30px;
 
-    @media ${device.mobileM} { 
+    @media ${device.mobileS} { 
         grid-template-columns: repeat(2, 1fr);
     }
 

@@ -10,11 +10,11 @@ export const NoteCard = styled.div`
     cursor: pointer;
     box-sizing: border-box;
 
-    @media ${device.mobileM} {
+    @media ${device.mobileS} {
         max-width: 170px;
-        height: 200px;
+        height: 180px;
     }
-
+    
     @media ${device.laptop} { 
         max-width: 220px;
         height: 250px;
