@@ -2,6 +2,9 @@
 <img width="300" alt="Fuerza Studio" src="https://user-images.githubusercontent.com/52936031/117340242-11ecb980-ae77-11eb-86f6-e41d26aa3fbc.png">
 </p>
 
+## Vercel Preview
+[Preview](https://nocturnal-omega.vercel.app/)
+
 ## Overview
 
 To complete this assessment, you will need to write a simple [React](https://facebook.github.io/react/) web app, using the code from this repo as starter.
